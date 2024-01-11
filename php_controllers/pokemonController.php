@@ -99,6 +99,30 @@ if (isset($_POST['delete'])) {
         echo "Error: " . $e->getMessage();
     }
 }
+
+
+
+
+
+
+// else if (isset($_POST['mod'])) {
+
+// try { 
+//     infomodpoke($_POST['idPoke']);
+//     header('Location: ../webApp/modCartas.php');
+
+// } catch (Exception $e) {
+//     echo "Error: " . $e->getMessage();
+// }
+
+// }
+
+
+
+
+
+    
+
   
 
 

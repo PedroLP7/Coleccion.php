@@ -402,16 +402,83 @@ function searchPoke($busqueda) {
 
 
 
-function infomod($idPoke){
-  $conexion = openDB();
-    $sentenciatext = "select * from pokemon where idPoke = :idPoke";
+
+function infomodpoke($idPoke)
+{
 
 
+
+    $conexion = openDB();
+
+
+    $sentenciatext = "SELECT
+    p.idPoke,
+    p.numPokedex,
+    p.nombrePoke,
+    GROUP_CONCAT(DISTINCT tp.nombreTipo ORDER BY tp.idTipo SEPARATOR '/') AS tipos,
+    r.nombreRegion AS region,
+    p.descripcion,
+    p.coleccion,
+    p.link,
+    p.imagenPoke,
+    r.IDregion,
+    GROUP_CONCAT(DISTINCT tp.idTipo ORDER BY tp.idTipo) AS idTipos
+FROM pokemon p
+LEFT JOIN pokeTipoNM pt ON p.idPoke = pt.idPoke
+LEFT JOIN tipoPokemon tp ON pt.idTipo = tp.idTipo
+JOIN region r ON p.idRegion = r.IDregion
+where p.idPoke = :idPoke  
+
+GROUP BY p.idPoke
+ORDER BY numPokedex;";
+
+    $sentencia = $conexion->prepare($sentenciatext);
+    $sentencia ->bindparam(':idPoke', $idPoke);
+    $sentencia->execute();
+    $resultado = $sentencia->fetchAll();
+
+
+
+
+
+
+
+
+
+
+
+    $conexion = closeDB();
+    return $resultado;
 }
 
 
 
+function getTipos(){
 
+$conn = openDB();
+$sentenciatext = "select * from tipopokemon;";
+$sentencia = $conn->prepare($sentenciatext);
+$sentencia->execute();
+$resultado = $sentencia->fetchAll();
+$conexion = closeDB();
+return $resultado;
+
+
+
+}
+
+function getRegiones(){
+    $conn = openDB();
+    $sentenciatext = "select * from region;";
+    $sentencia = $conn->prepare($sentenciatext);
+    $sentencia->execute();
+    $resultado = $sentencia->fetchAll();
+    $conexion = closeDB();
+    return $resultado;
+    
+    
+    
+    }
 
 
 

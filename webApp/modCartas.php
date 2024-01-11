@@ -1,6 +1,18 @@
-<?php session_start(); ?>
-<?php require_once('../php_partials/navbar.php'); 
+
+<?php require_once('../php_librarys/bdpokemon.php');
+ require_once('../php_partials/navbar.php'); 
 // necesito una funcion que me de la info de la carta a la uqe le has dado click en el boton de modificar usando la id de la carta
+$pokemonmod = infomodpoke($_POST['idPoke']);
+$regiones=getRegiones();
+$tipos = getTipos();
+foreach ($pokemonmod as $pokemon) {
+
+}
+
+
+
+            
+                
 
 ?>
 
@@ -36,7 +48,7 @@
             </div>
             <div class="card-body">
                 <form action="../php_controllers/pokemonController.php" method="POST" enctype="multipart/form-data">
-
+          
 
                 <div class="form-group row">
                         <label for="idPoke" class="col-sm-2 col-form-label">ID Pokemon</label>
@@ -46,7 +58,11 @@
                         </div>
                     </div>
 
+  <div>
 
+
+  <p>  <?php echo $pokemon['nombrePoke'] . $pokemon['idTipos']?></p>
+  </div>
 
 
 
@@ -71,88 +87,26 @@
                                 placeholder="Nombre del Pokemon"  value="<?php echo $_POST['nombrePokemon']?>" required>
                         </div>
                     </div>
-                    
-                    <div class="form-group row">
-                        <label for="newidRegion" class="col-sm-2 col-form-label">Region</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="newidRegion"autofocus required>
-                                <option value="" disabled selected>Elige la region...</option>
-                                <option value="1">Kanto</option>
-                                <option value="2">Johto</option>
-                                <option value="3">Hoenn</option>
-                                <option value="4">Sinnoh</option>
-                                <option value="5">Teselia</option>
-                                <option value="6">Kalos</option>
-                                <option value="7">Alola</option>
-                                <option value="8">Galar</option>
-                                <option value="9">Paldea</option>
-                                
-                            </select>
-                        </div>
-                    </div>
+
 
 
                     <div class="form-group row">
-    <div>
-    <label for="">Tipos</label>
-    <br>
-    <input type="checkbox" class="btn-check" id="Acero" autocomplete="off" name="tipos_seleccionados[]" value="1">
-    <label class="btn btn-primary" for="Acero">Acero</label>
+    <label for="newidRegion" class="col-sm-2 col-form-label">Region</label>
+    <div class="col-sm-10">
+        <select class="form-control" name="newidRegion" autofocus required>
+            
+            <?php
+            foreach ($regiones as $region) {
+                $regionId = $region['IDregion'];
+                $regionNombre = $region['nombreRegion'];
+                $Selected = ($regionId == $pokemonmod['IDregion']); // Verifica si la región está seleccionada
 
-    <input type="checkbox" class="btn-check" id="Agua" autocomplete="off" name="tipos_seleccionados[]" value="2">
-    <label class="btn btn-primary" for="Agua">Agua</label>
-
-    <input type="checkbox" class="btn-check" id="Bicho" autocomplete="off" name="tipos_seleccionados[]" value="3">
-    <label class="btn btn-primary" for="Bicho">Bicho</label>
-
-    <input type="checkbox" class="btn-check" id="Dragón" autocomplete="off" name="tipos_seleccionados[]" value="4">
-    <label class="btn btn-primary" for="Dragón">Dragón</label>
-
-    <input type="checkbox" class="btn-check" id="Electrico" autocomplete="off" name="tipos_seleccionados[]" value="5">
-    <label class="btn btn-primary" for="Electrico">Electrico</label>
-
-    <input type="checkbox" class="btn-check" id="Fantasma" autocomplete="off" name="tipos_seleccionados[]" value="6">
-    <label class="btn btn-primary" for="Fantasma">Fantasma</label>
-
-    <input type="checkbox" class="btn-check" id="Fuego" autocomplete="off" name="tipos_seleccionados[]" value="7">
-    <label class="btn btn-primary" for="Fuego">Fuego</label>
-
-    <input type="checkbox" class="btn-check" id="Hada" autocomplete="off" name="tipos_seleccionados[]" value="8">
-    <label class="btn btn-primary" for="Hada">Hada</label>
-
-
-    <input type="checkbox" class="btn-check" id="Hielo" autocomplete="off" name="tipos_seleccionados[]" value="9">
-    <label class="btn btn-primary" for="Hielo">Hielo</label>
-
-    <input type="checkbox" class="btn-check" id="Lucha" autocomplete="off" name="tipos_seleccionados[]" value="10">
-    <label class="btn btn-primary" for="Lucha">Lucha</label>
-
-    <input type="checkbox" class="btn-check" id="Normal" autocomplete="off" name="tipos_seleccionados[]" value="11" >
-    <label class="btn btn-primary" for="Normal">Normal</label>
-
-    <input type="checkbox" class="btn-check" id="Planta" autocomplete="off" name="tipos_seleccionados[]" value="12">
-    <label class="btn btn-primary" for="Planta">Planta</label>
-
-    <input type="checkbox" class="btn-check" id="Psiquico" autocomplete="off" name="tipos_seleccionados[]" value="13">
-    <label class="btn btn-primary" for="Psiquico">Psiquico</label>
-
-    <input type="checkbox" class="btn-check" id="Roca" autocomplete="off" name="tipos_seleccionados[]" value="14">
-    <label class="btn btn-primary" for="Roca">Roca</label>
-
-    <input type="checkbox" class="btn-check" id="Siniestro" autocomplete="off" name="tipos_seleccionados[]" value="15">
-    <label class="btn btn-primary" for="Siniestro">Siniestro</label>
-
-    <input type="checkbox" class="btn-check" id="Tierra" autocomplete="off" name="tipos_seleccionados[]" value="16">
-    <label class="btn btn-primary" for="Tierra">Tierra</label>
-
-    <input type="checkbox" class="btn-check" id="Veneno" autocomplete="off" name="tipos_seleccionados[]" value="17">
-    <label class="btn btn-primary" for="Veneno">Veneno</label>
-    
-
-    <input type="checkbox" class="btn-check" id="Volador" autocomplete="off" name="tipos_seleccionados[]" value="18">
-    <label class="btn btn-primary" for="Volador">Volador</label>
-
-
+                echo '<option value="' . $regionId . '"';
+                echo $Selected ? ' selected' : '';
+                echo '>' . $regionNombre . '</option>';
+            }
+            ?>
+        </select>
     </div>
 </div>
 
@@ -171,71 +125,60 @@
 
 
 
+                 
 
 
-
-
-
-
-
-
-
-
-
-                    <!-- <div class="form-group row">
-                        <label for="newidTipo" class="col-sm-2 col-form-label">Tipo 1</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="newidTipo" required>
-                                <option value="" disabled selected>Elige el Tipo 1...</option>
-                                <option value="1">Acero</option>
-                                <option value="2">Agua</option>
-                                <option value="3">Bicho</option>
-                                <option value="4">Dragón</option>
-                                <option value="5">Electrico</option>
-                                <option value="6">Fantasma</option>
-                                <option value="7">Fuego</option>
-                                <option value="8">Hada</option>
-                                <option value="9">Hielo</option>
-                                <option value="10">Lucha</option>
-                                <option value="11">Normal</option>
-                                <option value="12">Planta</option>
-                                <option value="13">Psiquico</option>
-                                <option value="14">Roca</option>
-                                <option value="15">Siniestro</option>
-                                <option value="16">Tierra</option>
-                                <option value="17">Veneno</option>
-                                <option value="18">Volador</option>
-                               
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group row">
-                        <label for="newidTipo2" class="col-sm-2 col-form-label ">Tipo 2</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="newidTipo2">
-                                <option value="" disabled selected>Elige el Tipo 2...</option>
-                                <option value="1">Acero</option>
-                                <option value="2">Agua</option>
-                                <option value="3">Bicho</option>
-                                <option value="4">Dragón</option>
-                                <option value="5">Electrico</option>
-                                <option value="6">Fantasma</option>
-                                <option value="7">Fuego</option>
-                                <option value="8">Hada</option>
-                                <option value="9">Hielo</option>
-                                <option value="10">Lucha</option>
-                                <option value="11">Normal</option>
-                                <option value="12">Planta</option>
-                                <option value="13">Psiquico</option>
-                                <option value="14">Roca</option>
-                                <option value="15">Siniestro</option>
-                                <option value="16">Tierra</option>
-                                <option value="17">Veneno</option>
-                                <option value="18">Volador</option>
-                                
-                            </select>
-                        </div>
-                    </div> -->
+    <div>
+        <label for="">Tipos</label>
+        <br>
+        <?php
+        foreach ($tipos as $tipo) {
+            $tipoId = $tipo['idTipo'];
+            $tipoNombre = $tipo['nombreTipo'];
+            $tipospoke = explode(',', $pokemon['idTipos']);
+            $Checked = in_array($tipoId, $tipospoke); 
+            
+
+            echo '<input type="checkbox" class="btn-check" id="' . $tipoNombre . '" autocomplete="off" name="tipos_seleccionados[]" value="' . $tipoId . '"';
+            echo $Checked ? ' checked' : ''; 
+          
+            echo '>';
+            echo '<label class="btn btn-primary" for="' . $tipoNombre . '">' . $tipoNombre . '</label>';
+        }
+        ?>
+    </div>
+</div>
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
                     
                     <div class="form-group row">
                         <label for="newdescripcion" class="col-sm-2 col-form-label">Descripcion</label>
