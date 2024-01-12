@@ -70,7 +70,7 @@ if (isset($_POST['delete'])) {
     
 } elseif (isset($_POST['update'])) {
     try {
-
+        if (isset($_FILES['newimagenPoke']) && $_FILES['newimagenPoke']['size'] > 0 && $_FILES['newimagenPoke']['error'] == UPLOAD_ERR_OK) {
         $imagenTmpPath = $_FILES['newimagenPoke']['tmp_name'];
         $imagenNombre = $_FILES['newimagenPoke']['name'];
 
@@ -82,7 +82,10 @@ if (isset($_POST['delete'])) {
         move_uploaded_file($imagenTmpPath, $imagenRuta);
         $imagenRuta = str_replace($_SERVER['DOCUMENT_ROOT'], '', $imagenRuta);
 
-
+        } else {
+            $imagenRuta = getRutaimagen($_POST['idPoke']);
+            
+        }
 
 
        $idPoke= updatePokemon( $_POST['idPoke'],$_POST['newPokedex'],$_POST['newnombre'],$_POST['newidRegion'],$_POST['newdescripcion'],

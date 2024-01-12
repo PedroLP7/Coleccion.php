@@ -1,19 +1,13 @@
 
-<?php require_once('../php_librarys/bdpokemon.php');
- require_once('../php_partials/navbar.php'); 
+<?php
+require_once "../php_librarys/bdpokemon.php";
+require_once "../php_partials/navbar.php";
 // necesito una funcion que me de la info de la carta a la uqe le has dado click en el boton de modificar usando la id de la carta
-$pokemonmod = infomodpoke($_POST['idPoke']);
-$regiones=getRegiones();
+$pokemonmod = infomodpoke($_POST["idPoke"]);
+$regiones = getRegiones();
 $tipos = getTipos();
 foreach ($pokemonmod as $pokemon) {
-
 }
-
-
-
-            
-                
-
 ?>
 
  
@@ -25,6 +19,7 @@ foreach ($pokemonmod as $pokemon) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M07Coleccion</title>
+    <link rel="stylesheet" href="../styles/cssmod.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 </head>
 
@@ -35,7 +30,7 @@ foreach ($pokemonmod as $pokemon) {
     background-position: center center; 
     overflow: hidden;">
     <div class="container">
-        <?php require_once('../php_partials/mensajes.php'); ?>
+        <?php require_once "../php_partials/mensajes.php"; ?>
 
         <div class="card mt-2 border-dark">
             <div class="card-header bg-dark text-white"style="background-image: url('../media/carta/addfondo.png');
@@ -54,14 +49,16 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="idPoke" class="col-sm-2 col-form-label">ID Pokemon</label>
                         <div class="col-sm-10">
                             <input type="text" name="idPoke" id="idPoke" class="form-control readonly-field" readonly
-                                placeholder=""  value="<?php echo $_POST['idPoke']?>">
+                                placeholder=""  value="<?php echo $_POST[
+                                    "idPoke"
+                                ]; ?>">
                         </div>
                     </div>
 
   <div>
 
 
-  <p>  <?php echo $pokemon['nombrePoke'] . $pokemon['idTipos']?></p>
+  <p>  <?php echo $pokemon["nombrePoke"] . $pokemon["idTipos"]; ?></p>
   </div>
 
 
@@ -77,14 +74,18 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="newPokedex" class="col-sm-2 col-form-label">Numero Pokedex</label>
                         <div class="col-sm-10">
                             <input type="text" name="newPokedex" id="newPokedex" class="form-control"
-                                placeholder="Numero de la pokedex"  value="<?php echo $_POST['numPokedex']?>"required>
+                                placeholder="Numero de la pokedex" autofocus value="<?php echo $_POST[
+                                    "numPokedex"
+                                ]; ?>"required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="newnombre" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
                             <input type="text" name="newnombre" id="newnombre" class="form-control"
-                                placeholder="Nombre del Pokemon"  value="<?php echo $_POST['nombrePokemon']?>" required>
+                                placeholder="Nombre del Pokemon"  value="<?php echo $_POST[
+                                    "nombrePokemon"
+                                ]; ?>" required>
                         </div>
                     </div>
 
@@ -93,98 +94,60 @@ foreach ($pokemonmod as $pokemon) {
                     <div class="form-group row">
     <label for="newidRegion" class="col-sm-2 col-form-label">Region</label>
     <div class="col-sm-10">
-        <select class="form-control" name="newidRegion" autofocus required>
+        <select class="form-control" name="newidRegion" required>
             
-            <?php
-            foreach ($regiones as $region) {
-                $regionId = $region['IDregion'];
-                $regionNombre = $region['nombreRegion'];
-                $Selected = ($regionId == $pokemonmod['IDregion']); // Verifica si la región está seleccionada
+            <?php foreach ($regiones as $region) {
+                $regionId = $region["IDregion"];
+                $regionNombre = $region["nombreRegion"];
+                $Selected = $regionId == $pokemonmod["IDregion"]; // Verifica si la región está seleccionada
 
                 echo '<option value="' . $regionId . '"';
-                echo $Selected ? ' selected' : '';
-                echo '>' . $regionNombre . '</option>';
-            }
-            ?>
+                echo $Selected ? " selected" : "";
+                echo ">" . $regionNombre . "</option>";
+            } ?>
         </select>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                 
 
 
                     <div class="form-group row">
     <div>
         <label for="">Tipos</label>
         <br>
-        <?php
-        foreach ($tipos as $tipo) {
-            $tipoId = $tipo['idTipo'];
-            $tipoNombre = $tipo['nombreTipo'];
-            $tipospoke = explode(',', $pokemon['idTipos']);
-            $Checked = in_array($tipoId, $tipospoke); 
-            
+        <?php foreach ($tipos as $tipo) {
+            $tipoId = $tipo["idTipo"];
+            $tipoNombre = $tipo["nombreTipo"];
+            $tipospoke = explode(",", $pokemon["idTipos"]);
+            $Checked = in_array($tipoId, $tipospoke);
 
-            echo '<input type="checkbox" class="btn-check" id="' . $tipoNombre . '" autocomplete="off" name="tipos_seleccionados[]" value="' . $tipoId . '"';
-            echo $Checked ? ' checked' : ''; 
-          
-            echo '>';
-            echo '<label class="btn btn-primary" for="' . $tipoNombre . '">' . $tipoNombre . '</label>';
-        }
-        ?>
+            echo '<input type="checkbox" class="btn-check" id="' .
+                $tipoNombre .
+                '" autocomplete="off" name="tipos_seleccionados[]" value="' .
+                $tipoId .
+                '"';
+            echo $Checked ? " checked" : "";
+
+            echo ">";
+            echo '<label class="btn btn-primary" for="' .
+                $tipoNombre .
+                '">' .
+                $tipoNombre .
+                "</label>";
+        } ?>
     </div>
 </div>
 
 
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
                    
                     
-                    <div class="form-group row">
+                      <div class="form-group row">
                         <label for="newdescripcion" class="col-sm-2 col-form-label">Descripcion</label>
                         <div class="col-sm-10">
                             <input type="text "name="newdescripcion" id="newdescripcion" class="form-control "
-                                placeholder="Descripcion pokemon" autofocus value="<?php echo $_POST['descripcion']?>"required>
+                                placeholder="Descripcion pokemon" autofocus value="<?php echo $_POST[
+                                    "descripcion"
+                                ]; ?>"required>
                         </div>
                     </div>
 
@@ -192,7 +155,9 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="newcoleccion" class="col-sm-2 col-form-label">Coleccion</label>
                         <div class="col-sm-10">
                             <input type="text" name="newcoleccion" id="newcoleccion" class="form-control"
-                                placeholder="Introduce la coleccion a la que pertenece..." autofocus value="<?php echo $_POST['coleccion']?>"required>
+                                placeholder="Introduce la coleccion a la que pertenece..." autofocus value="<?php echo $_POST[
+                                    "coleccion"
+                                ]; ?>"required>
                         </div>
                     </div>
 
@@ -200,7 +165,9 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="newlink" class="col-sm-2 col-form-label">Enlace oficial</label>
                         <div class="col-sm-10">
                             <input type="text" name="newlink" id="newlink" class="form-control"
-                                placeholder="Introduce el enlace de la tienda." autofocus value="<?php echo $_POST['link']?>"required>
+                                placeholder="Introduce el enlace de la tienda." autofocus value="<?php echo $_POST[
+                                    "link"
+                                ]; ?>"required>
                         </div>
                     </div>
 
@@ -208,11 +175,19 @@ foreach ($pokemonmod as $pokemon) {
 
 
                     <div class="form-group row">
-                        <label for="newimagenPoke" class="col-sm-2 col-form-label">Imagen</label>
-                        <div class="col-sm-10">
-                            <input type="file" name="newimagenPoke" id="newimagenPoke" class="form-control-file" placeholder="Imagen aqui" autofocus>
-                        </div>
-                    </div>
+    <label for="newimagenPoke" class="col-sm-2 col-form-label">Imagen actual</label>
+    <div class="col-sm-10">
+        <img src="<?php echo $pokemon['imagenPoke']; ?>" class="imagenmod" alt="Imagen actual" class="img-fluid">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="newimagenPoke" class="col-sm-2 col-form-label">Nueva imagen</label>
+    <div class="col-sm-10">
+        <input type="file" name="newimagenPoke" id="newimagenPoke" class="form-control-file" placeholder="Imagen aquí">
+    </div>
+</div>
+
+
                     <br>
                     <div class="float-right">
                         <div class="btn-group" role="group" aria-label="Basic example">

@@ -71,6 +71,7 @@ $pokemons = selectPokemons();
                                 <input type="hidden" name="descripcion" value="<?php echo $pokemon['descripcion'] ?>">
                                 <input type="hidden" name="coleccion" value="<?php echo $pokemon['coleccion'] ?>">
                                 <input type="hidden" name="link" value="<?php echo $pokemon['link'] ?>">
+                                <input type="hidden" name="imagenPoke2" value="<?php echo $pokemon['imagenPoke'] ?>">
                             </form>
                         </div>
 

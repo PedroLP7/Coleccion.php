@@ -481,5 +481,30 @@ function getRegiones(){
     }
 
 
+    function getRutaimagen($idPoke) {
+        try {
+            $conn = openDB();
+            $sentenciatext = "SELECT imagenPoke FROM pokemon WHERE idPoke = :idPoke";
+            $sentencia = $conn->prepare($sentenciatext);
+            $sentencia->bindParam(':idPoke', $idPoke, PDO::PARAM_INT);
+            $sentencia->execute();
+    
+            
+            $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+    
+           
+            $conexion = closeDB();
+    
+            
+            return $resultado ? $resultado['imagenPoke'] : 'ruta_por_defecto.jpg';
+        } catch (PDOException $e) {
+            
+            echo "Error al obtener la ruta de la imagen: " . $e->getMessage();
+            return 'ruta_por_defecto.jpg'; //
+        }
+    }
+    
+
+
 
 ?>
