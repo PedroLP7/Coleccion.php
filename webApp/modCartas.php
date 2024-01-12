@@ -58,7 +58,7 @@ foreach ($pokemonmod as $pokemon) {
   <div>
 
 
-  <p>  <?php echo $pokemon["nombrePoke"] . $pokemon["idTipos"]; ?></p>
+
   </div>
 
 
@@ -88,8 +88,7 @@ foreach ($pokemonmod as $pokemon) {
                                 ]; ?>" required>
                         </div>
                     </div>
-
-
+                    
 
                     <div class="form-group row">
     <label for="newidRegion" class="col-sm-2 col-form-label">Region</label>
@@ -99,7 +98,7 @@ foreach ($pokemonmod as $pokemon) {
             <?php foreach ($regiones as $region) {
                 $regionId = $region["IDregion"];
                 $regionNombre = $region["nombreRegion"];
-                $Selected = $regionId == $pokemonmod["IDregion"]; // Verifica si la región está seleccionada
+                $Selected = $regionId == $pokemonmod["IDregion"]; // Verifica 
 
                 echo '<option value="' . $regionId . '"';
                 echo $Selected ? " selected" : "";
