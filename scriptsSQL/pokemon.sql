@@ -33,7 +33,8 @@ CREATE TABLE `pokemon` (
   `link` varchar(255) NOT NULL,
   PRIMARY KEY (`idPoke`),
   UNIQUE KEY `numPokedex_UNIQUE` (`numPokedex`),
-  KEY `idRegion` (`idRegion`)
+  KEY `idRegion` (`idRegion`),
+  CONSTRAINT `region_ibfk_2` FOREIGN KEY (`idRegion`) REFERENCES `region` (`IDregion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -131,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-11 15:32:10
+-- Dump completed on 2024-01-11 21:22:01
