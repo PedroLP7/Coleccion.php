@@ -417,6 +417,7 @@ function infomodpoke($idPoke)
     p.nombrePoke,
     GROUP_CONCAT(DISTINCT tp.nombreTipo ORDER BY tp.idTipo SEPARATOR '/') AS tipos,
     r.nombreRegion AS region,
+    r.IDregion as idRegion,
     p.descripcion,
     p.coleccion,
     p.link,

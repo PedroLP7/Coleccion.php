@@ -95,10 +95,11 @@ foreach ($pokemonmod as $pokemon) {
     <div class="col-sm-10">
         <select class="form-control" name="newidRegion" required>
             
-            <?php foreach ($regiones as $region) {
+            <?php  
+             foreach ($regiones as $region) {
                 $regionId = $region["IDregion"];
                 $regionNombre = $region["nombreRegion"];
-                $Selected = $regionId == $pokemonmod["IDregion"]; // Verifica 
+                $Selected = $regionId === $pokemon["idRegion"]; 
 
                 echo '<option value="' . $regionId . '"';
                 echo $Selected ? " selected" : "";
