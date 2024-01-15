@@ -23,7 +23,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "http://localhost:8080/coleccionM07/webApp/index.php",
+            "url": "http://localhost:8080/coleccionOnline/api/index.php",
             "webRoot": "${workspaceFolder}"
         },
         {
