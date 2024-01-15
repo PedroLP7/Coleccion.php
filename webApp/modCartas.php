@@ -49,9 +49,7 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="idPoke" class="col-sm-2 col-form-label">ID Pokemon</label>
                         <div class="col-sm-10">
                             <input type="text" name="idPoke" id="idPoke" class="form-control readonly-field" readonly
-                                placeholder=""  value="<?php echo $_POST[
-                                    "idPoke"
-                                ]; ?>">
+                                placeholder=""  value=" <?php echo $pokemon['idPoke']   ?>">
                         </div>
                     </div>
 
@@ -74,18 +72,14 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="newPokedex" class="col-sm-2 col-form-label">Numero Pokedex</label>
                         <div class="col-sm-10">
                             <input type="text" name="newPokedex" id="newPokedex" class="form-control"
-                                placeholder="Numero de la pokedex" autofocus value="<?php echo $_POST[
-                                    "numPokedex"
-                                ]; ?>"required>
+                                placeholder="Numero de la pokedex" autofocus value="<?php echo $pokemon['numPokedex'] ?>"required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="newnombre" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
                             <input type="text" name="newnombre" id="newnombre" class="form-control"
-                                placeholder="Nombre del Pokemon"  value="<?php echo $_POST[
-                                    "nombrePokemon"
-                                ]; ?>" required>
+                                placeholder="Nombre del Pokemon"  value="<?php echo $pokemon['nombrePoke'] ?>" required>
                         </div>
                     </div>
                     
@@ -145,9 +139,7 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="newdescripcion" class="col-sm-2 col-form-label">Descripcion</label>
                         <div class="col-sm-10">
                             <input type="text "name="newdescripcion" id="newdescripcion" class="form-control "
-                                placeholder="Descripcion pokemon" autofocus value="<?php echo $_POST[
-                                    "descripcion"
-                                ]; ?>"required>
+                                placeholder="Descripcion pokemon" autofocus value="<?php echo $pokemon['descripcion'] ?>"required>
                         </div>
                     </div>
 
@@ -155,9 +147,7 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="newcoleccion" class="col-sm-2 col-form-label">Coleccion</label>
                         <div class="col-sm-10">
                             <input type="text" name="newcoleccion" id="newcoleccion" class="form-control"
-                                placeholder="Introduce la coleccion a la que pertenece..." autofocus value="<?php echo $_POST[
-                                    "coleccion"
-                                ]; ?>"required>
+                                placeholder="Introduce la coleccion a la que pertenece..."  value="<?php echo $pokemon['coleccion'] ?>"required>
                         </div>
                     </div>
 
@@ -165,9 +155,7 @@ foreach ($pokemonmod as $pokemon) {
                         <label for="newlink" class="col-sm-2 col-form-label">Enlace oficial</label>
                         <div class="col-sm-10">
                             <input type="text" name="newlink" id="newlink" class="form-control"
-                                placeholder="Introduce el enlace de la tienda." autofocus value="<?php echo $_POST[
-                                    "link"
-                                ]; ?>"required>
+                                placeholder="Introduce el enlace de la tienda." autofocus value="<?php echo $pokemon['link'] ?>"required>
                         </div>
                     </div>
 
