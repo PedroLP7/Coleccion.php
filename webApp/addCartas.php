@@ -83,9 +83,9 @@ $tipos = getTipos();
                     </div>
                     
                     <div class="form-group row">
-    <label for="newidRegion" class="col-sm-2 col-form-label">Region</label>
+    <label for="idRegion" class="col-sm-2 col-form-label">Region</label>
     <div class="col-sm-10">
-        <select class="form-control" name="newidRegion" required>
+        <select class="form-control" name="idRegion" required>
             
             <?php  
             $defaultOption = "Elige una región";  // Define la frase predeterminada
